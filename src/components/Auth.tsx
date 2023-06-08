@@ -32,12 +32,12 @@ const Auth: React.FC = () => {
 
     }
 
-    return <form onSubmit={submitHandler} className='flex flex-col justify-between items-center text-blue-950 p-3 w-6/12 m-auto gap-2'>
+    return <form onSubmit={submitHandler} className='flex flex-col justify-between items-center text-blue-950 p-3 w-6/12 m-auto gap-2border-2 border-b-blue-950'>
         <label htmlFor="email">Email</label>
         <input type="email" id="email" ref={emailRef}/>
         <label htmlFor="password">Password</label>
         <input type="password" id="password" ref={passwordRef}/>
-        <button type="submit" className='bg-blue-300 m-1 p-3 rounded shadow-blue-900 hover:bg-blue-200 disabled:opacity-50'>Login</button>
+        <button type="submit" className='bg-blue-300 m-1 p-3 rounded shadow-blue-900 hover:bg-blue-200 disabled:opacity-50 border-2 border-b-blue-950' >Login</button>
     </form>
 
 
