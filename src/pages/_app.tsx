@@ -7,7 +7,7 @@ import {useRouter} from "next/router";
 
 
 export default function App({Component, pageProps}: AppProps) {
-    const noAuthRequiredPaths = ['/auth', '/sign-up'];
+    const noAuthRequiredPaths = ['/','/auth', '/sign-up'];
     const router = useRouter();
     console.log(router.pathname);
 
