@@ -7,7 +7,7 @@ const Auth: React.FC = () => {
     const router = useRouter();
     const emailRef = React.useRef<HTMLInputElement>(null)
     const passwordRef = React.useRef<HTMLInputElement>(null)
-    const {user}  = useAuth()
+
     const {login} = useAuth()
 
     const submitHandler = async(event: React.FormEvent<HTMLFormElement>) => {

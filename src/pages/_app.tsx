@@ -14,9 +14,9 @@ export default function App({Component, pageProps}: AppProps) {
 
     return <AuthProvider>
         <MainNavigation/>
-        noAuthRequiredPaths.includes(router.pathname) ? <Component {...pageProps} /> : <ProtectorRout>
+        {(noAuthRequiredPaths.includes(router.pathname) ? <Component {...pageProps} /> : <ProtectorRout>
         <Component {...pageProps} />
-    </ProtectorRout>
+    </ProtectorRout>)}
 
     </AuthProvider>
 }

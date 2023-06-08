@@ -7,7 +7,7 @@ const SignUp: React.FC = () => {
     const router = useRouter();
     const emailRef = React.useRef<HTMLInputElement>(null)
     const passwordRef = React.useRef<HTMLInputElement>(null)
-    const {user}  = useAuth()
+
     const {signUp} = useAuth()
 
     const submitHandler = async(event: React.FormEvent<HTMLFormElement>) => {
@@ -32,7 +32,6 @@ const SignUp: React.FC = () => {
 
     }
 
-    console.log(user);
     return <form onSubmit={submitHandler} className='flex flex-col justify-between items-center text-blue-950 p-3 w-6/12 m-auto gap-2'>
         <label htmlFor="email">Email</label>
         <input type="email" id="email" ref={emailRef}/>
