@@ -9,16 +9,23 @@ import {auth} from '@/config/firebase'
 
 
 
-export const AuthContext = createContext<any>({
 
-});
+
+
+export const AuthContext = createContext<any>({});
 
 
 export const useAuth = () => useContext(AuthContext)
 
+
 export const AuthProvider = ({children}: { children: React.ReactNode }) => {
+
+
+
+
     const [user, setUser] = useState<any>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true)
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -39,6 +46,7 @@ export const AuthProvider = ({children}: { children: React.ReactNode }) => {
 
     }, [])
 
+
     const logout = async () => {
         setUser(null)
         return await signOut(auth)
@@ -47,12 +55,12 @@ export const AuthProvider = ({children}: { children: React.ReactNode }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const login = (email: string, password: string) => {
-        return  signInWithEmailAndPassword(auth, email, password)
+        return signInWithEmailAndPassword(auth, email, password)
     }
 
 
     return (
-        <AuthContext.Provider value={{  user, login , logout, signUp, }}>
+        <AuthContext.Provider value={{user, login, logout, signUp,}}>
             {isLoading ? null : children}
         </AuthContext.Provider>
     )
