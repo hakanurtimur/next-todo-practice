@@ -2,7 +2,7 @@ import React, {useEffect, createContext, useContext} from "react";
 
 
 import db from "@/config/firebase";
-import {collection, doc, setDoc, onSnapshot, updateDoc} from "firebase/firestore";
+import {collection, doc, setDoc, onSnapshot, updateDoc, deleteDoc} from "firebase/firestore";
 import {AuthContext} from "@/context/AuthContext";
 import {uuidv4} from "@firebase/util";
 
@@ -65,7 +65,7 @@ const TodoContextProvider = ({children}: { children: React.ReactNode }) => {
     }
 
     async function completeTodo(todo: any) {
-        console.log(todo)
+
         try {
             const todoRef = doc(collectionRef, todo.id);
             await updateDoc(todoRef, {isCompleted: true});
@@ -74,10 +74,20 @@ const TodoContextProvider = ({children}: { children: React.ReactNode }) => {
         }
     }
 
+    async function deleteTodo(todo: any) {
+
+        try {
+            const todoRef = doc(collectionRef, todo.id);
+            await deleteDoc(todoRef);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 
     return (
         <TodoContext.Provider
-            value={{todos, isLoading, error, title, setTitle, description, setDescription, addTodo, completeTodo}}>
+            value={{todos, isLoading, error, title, setTitle, description, setDescription, addTodo, completeTodo, deleteTodo}}>
             {children}
         </TodoContext.Provider>
     );

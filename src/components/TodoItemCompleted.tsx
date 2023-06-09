@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useContext} from "react";
+import {TodoContext} from "@/context/TodoContext";
 
 
 const TodoItemCompleted: React.FC<{
@@ -6,10 +7,17 @@ const TodoItemCompleted: React.FC<{
     id: string,
     isCompleted: boolean,
     description: string
+    item: object
 }> = (props) => {
 
 
     const [isShown, setIsShown] = React.useState(false);
+
+    const {deleteTodo} = useContext(TodoContext);
+
+    const deleteHandler = () => {
+        deleteTodo(props.item)
+    }
 
     const showDetailsHandler = () => {
         setIsShown(prevState => !prevState);
@@ -21,8 +29,8 @@ const TodoItemCompleted: React.FC<{
         <div className='flex  flex-row justify-between gap-1'>
             <p className='text-blue-900 text-l whitespace-normal break-words w-60 '>{props.title}</p>
             <div className='flex flex-row gap-1'>
-                <button className=''>✘</button>
-                <button className='' onClick={showDetailsHandler}>▼</button>
+                <button onClick={deleteHandler}>✘</button>
+                <button onClick={showDetailsHandler}>▼</button>
             </div>
         </div>
         {isShown && <p className='whitespace-normal break-words flex-grow-0'>{props.description}</p>}

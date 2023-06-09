@@ -9,7 +9,7 @@ const TodoItem: React.FC<{ item: object, title: string, id: string, isCompleted:
 
     const [isShown, setIsShown] = React.useState(false);
 
-    const {completeTodo} = useContext(TodoContext);
+    const {completeTodo, deleteTodo} = useContext(TodoContext);
 
     const showDetailsHandler = () => {
         setIsShown(prevState => !prevState);
@@ -17,6 +17,10 @@ const TodoItem: React.FC<{ item: object, title: string, id: string, isCompleted:
 
     const completeHandler = () => {
         completeTodo(props.item)
+    }
+
+    const deleteHandler = () => {
+        deleteTodo(props.item)
     }
 
 
@@ -30,7 +34,7 @@ const TodoItem: React.FC<{ item: object, title: string, id: string, isCompleted:
             <p className='text-blue-900 text-1xl whitespace-normal break-words w-60 '>{props.title}</p>
             <div className='flex flex-row gap-1'>
             <button onClick={completeHandler}>✔</button>
-            <button>✘</button>
+            <button onClick={deleteHandler}>✘</button>
             <button onClick={showDetailsHandler}>▼</button>
             </div>
         </div>
