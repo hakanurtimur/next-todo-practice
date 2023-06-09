@@ -1,13 +1,14 @@
 import React, {useEffect, createContext, useContext} from "react";
-import {collection} from "@firebase/firestore";
+
 
 import db from "@/config/firebase";
-import {onSnapshot, doc, setDoc} from "firebase/firestore";
+import {collection, doc, setDoc, onSnapshot, updateDoc} from "firebase/firestore";
 import {AuthContext} from "@/context/AuthContext";
+import {uuidv4} from "@firebase/util";
 
 
 export const TodoContext = createContext<any>({});
-const TodoContextProvider = ({children}: {children: React.ReactNode}) => {
+const TodoContextProvider = ({children}: { children: React.ReactNode }) => {
 
     const [todos, setTodos] = React.useState<any>([]); // [
     const collectionRef = collection(db, 'todos');
@@ -50,23 +51,33 @@ const TodoContextProvider = ({children}: {children: React.ReactNode}) => {
             title: title,
             description: description,
             isCompleted: false,
-            id: Date.now(),
+            id: uuidv4(),
             owner,
             ownerEmail,
         };
 
         try {
-            const todoRef = doc(collectionRef);
+            const todoRef = doc(collectionRef, newTodo.id);
             await setDoc(todoRef, newTodo);
         } catch (error) {
             console.error(error);
         }
     }
 
+    async function completeTodo(todo: any) {
+        console.log(todo)
+        try {
+            const todoRef = doc(collectionRef, todo.id);
+            await updateDoc(todoRef, {isCompleted: true});
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
 
     return (
-        <TodoContext.Provider value={{todos, isLoading, error, title, setTitle, description, setDescription, addTodo}}>
+        <TodoContext.Provider
+            value={{todos, isLoading, error, title, setTitle, description, setDescription, addTodo, completeTodo}}>
             {children}
         </TodoContext.Provider>
     );

@@ -8,7 +8,7 @@ import TodoContextProvider from "@/context/TodoContext";
 
 
 export default function App({Component, pageProps}: AppProps) {
-    const noAuthRequiredPaths = ['/', '/auth', '/sign-up'];
+    const noAuthRequiredPaths = ['/', '/auth', '/sign-up', '/forget-password']
     const router = useRouter();
     console.log(router.pathname);
 
