@@ -19,6 +19,11 @@ const ForgetPassword: React.FC = () => {
         } catch (e) {
             console.log(e)
         }
+
+        setTimeout(() => {
+            window.location.href = '/auth'
+            window.alert('Check your email for reset password link')
+        }, 1000)
     }
 
 
