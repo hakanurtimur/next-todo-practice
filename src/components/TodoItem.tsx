@@ -25,13 +25,16 @@ const TodoItem: React.FC<{ item: object, title: string, id: string, isCompleted:
 
 
 
-    return <li className='flex flex-col justify-between w-8/12 border-2 border-b-blue-950 text-blue-950 p-3 m-3 rounded'>
-        <div className='flex flex-row justify-between'>
-            <button><h1>{props.title}</h1></button>
-            <button onClick={completeHandler}>Completed</button>
-            <button onClick={showDetailsHandler}>Details</button>
+    return <li className='flex flex-col justify-between w-8/12 border-2 border-b-blue-950 text-blue-950 p-2 m-2 rounded'>
+        <div className='flex flex-row justify-between gap-1'>
+            <p className='text-blue-900 text-1xl whitespace-normal break-words w-60 '>{props.title}</p>
+            <div className='flex flex-row gap-1'>
+            <button onClick={completeHandler}>✔</button>
+            <button>✘</button>
+            <button onClick={showDetailsHandler}>▼</button>
+            </div>
         </div>
-        {isShown && <p>{props.description}</p>}
+        {isShown && <p className='whitespace-normal break-words flex-grow-0 flex-shrink-0'>{props.description}</p>}
         </li>
         }
 

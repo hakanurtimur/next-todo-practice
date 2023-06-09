@@ -16,10 +16,12 @@ export default function App({Component, pageProps}: AppProps) {
     return <AuthProvider>
         <TodoContextProvider>
             <MainNavigation/>
+            <main>
 
             {(noAuthRequiredPaths.includes(router.pathname) ? <Component {...pageProps} /> : <ProtectorRout>
                 <Component {...pageProps} />
             </ProtectorRout>)}
+            </main>
         </TodoContextProvider>
 
     </AuthProvider>
