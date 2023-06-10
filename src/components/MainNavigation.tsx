@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 
@@ -7,12 +7,25 @@ const MainNavigation: React.FC = () => {
   const clickHandler = async () => {
     await logout();
   };
+  const wrapperRef = React.useRef<any>(null);
 
   const [showNav, setShowNav] = React.useState(false);
 
   const clickHandler2 = () => {
     setShowNav(!showNav);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setShowNav(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="fixed w-full">
@@ -72,6 +85,7 @@ const MainNavigation: React.FC = () => {
         <div className="lg:hidden bg-opacity-90 bg-blue-800 w-1/4 float-right rounded-b ">
           {showNav && (
             <ul
+              ref={wrapperRef}
               onClick={clickHandler2}
               className="lg:hidden flex flex-col gap-5 justify-between w-80 p-3 text-1x1"
             >
