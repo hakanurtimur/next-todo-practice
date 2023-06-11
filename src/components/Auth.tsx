@@ -33,15 +33,17 @@ const Auth: React.FC = () => {
 
   return (
     <div>
+      <h1 className="text-center text-primary-900 text-2xl">Login</h1>
       <form
         onSubmit={submitHandler}
-        className="flex flex-col justify-between items-center text-blue-950 p-3 w-full m-auto gap-2"
+        className="flex flex-col justify-between items-center text-blue-950 p-3 w-full m-auto gap-1"
       >
         <label className="w-8/12 m-1" htmlFor="email">
           Email Address{" "}
         </label>
         <input
-          className="bg-blue-200 w-8/12 m-2 p-3 rounded shadow-blue-900 hover:bg-blue-100 active:bg-blue-5 disabled:opacity-50"
+          className="bg-primary-200 w-8/12 m-1 p-3 rounded
+        hover:bg-primary-100"
           type="email"
           id="email"
           ref={emailRef}
@@ -53,7 +55,7 @@ const Auth: React.FC = () => {
           Password{" "}
           <span>
             <Link
-              className="text-blue-500 hover:text-blue-900"
+              className="text-primary-700 hover:text-secondary-900"
               href={"/forget-password"}
             >
               Forget your password ?
@@ -61,14 +63,16 @@ const Auth: React.FC = () => {
           </span>
         </label>
         <input
-          className="bg-blue-200 w-8/12 m-2 p-3 rounded shadow-blue-900 hover:bg-blue-100  active:bg-blue-5  disabled:opacity-50"
+          className="bg-primary-200 w-8/12 m-2 p-3 rounded
+        hover:bg-primary-100"
           type="password"
           id="password"
           ref={passwordRef}
         />
         <button
           type="submit"
-          className="w-8/12 bg-blue-300 m-1 p-3 rounded shadow-blue-900 hover:bg-blue-200 disabled:opacity-50 border-2 border-b-blue-950"
+          className="w-8/12 bg-secondary-500 m-2 p-3 rounded  hover:bg-secondary-700 disabled:opacity-
+        50"
         >
           Login
         </button>

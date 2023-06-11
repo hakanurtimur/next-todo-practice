@@ -7,6 +7,38 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: {
+          900: "rgba(21, 38, 22, 1)",
+          800: "rgba(21, 38, 22, 0.8)",
+          500: "rgba(21, 38, 22, 0.5)",
+          200: "rgba(21, 38, 22, 0.2)",
+          100: "rgba(21, 38, 22, 0.1)",
+          50: "rgba(21, 38, 22, 0.05)",
+        },
+        secondary: {
+          900: "rgba(190, 242, 4, 1)",
+          800: "rgba(190, 242, 4, 0.8)",
+          700: "rgba(190, 242, 4, 0.7)",
+          500: "rgba(190, 242, 4, 0.5)",
+          200: "rgba(190, 242, 4, 0.2)",
+        },
+        third: {
+          900: "rgba(131, 165, 9, 1)",
+          500: "rgba(131, 165, 9, 0.5)",
+          200: "rgba(131, 165, 9, 0.2)",
+        },
+        fourth: {
+          900: "rgba(214, 242, 4, 1)",
+          500: "rgba(214, 242, 4, 0.5)",
+          200: "rgba(214, 242, 4, 0.2)",
+        },
+        fifth: {
+          900: "rgba(242, 4, 4, 1)",
+          500: "rgba(242, 4, 4, 0.5)",
+          200: "rgba(242, 4, 4, 0.2)",
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -23,7 +55,10 @@ module.exports = {
         },
         "menu-down": {
           "0%": { opacity: "0", transform: "translateY(-10px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
         },
         "menu-up": {
           "0%": {
@@ -34,6 +69,11 @@ module.exports = {
             opacity: "0",
             transform: "translateY(-10px)",
           },
+        },
+        "hover-tick": {
+          "0%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(5px)" },
+          "100%": { transform: "translateX(0)" },
         },
       },
       animation: {

@@ -27,7 +27,8 @@ const NewTodo = () => {
     router.push("/todos");
   };
   return (
-    <>
+    <div>
+      <h1 className="text-center text-primary-900 text-2xl">Add Todos</h1>
       <form
         onSubmit={submitHandler}
         className="flex flex-col justify-between items-center text-blue-950 p-3 w-full m-auto"
@@ -36,8 +37,8 @@ const NewTodo = () => {
           Todos Text
         </label>
         <input
-          className="bg-blue-200 m-2 p-3 rounded w-8/12 shadow-blue-900
-        hover:bg-blue-100 active:bg-blue-5 disabled:opacity-50"
+          className="bg-primary-200 w-8/12 m-2 p-3 rounded
+        hover:bg-primary-100"
           type="text"
           id="todo-text"
           ref={textInputRef}
@@ -46,8 +47,8 @@ const NewTodo = () => {
           Todos Description
         </label>
         <input
-          className="bg-blue-200 m-2 p-3 rounded w-8/12 shadow-blue-900
-        hover:bg-blue-100 active:bg-blue-5 disabled:opacity-50"
+          className="bg-primary-200 w-8/12 m-2 p-3 rounded
+        hover:bg-primary-100"
           type="text"
           id="todo-description"
           ref={descriptionInputRef}
@@ -55,13 +56,13 @@ const NewTodo = () => {
         <button
           disabled={disabled}
           type="submit"
-          className="w-8/12 bg-blue-300 m-2 p-3 rounded shadow-blue-900
-        hover:bg-blue-200 disabled:opacity-50 border-2 border-b-blue-950"
+          className="w-8/12 bg-secondary-500 m-2 p-3 rounded  hover:bg-secondary-700 disabled:opacity-
+        50"
         >
           Add Todos
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

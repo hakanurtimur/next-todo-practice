@@ -30,33 +30,23 @@ const MainNavigation: React.FC = () => {
   }, []);
 
   return (
-    <header className="fixed w-full">
+    <header className="fixed w-full text-secondary-900 ">
       <nav>
-        <div className="flex flex-row justify-between bg-blue-800 text-blue-50 mb-50 px-3 py-5 gap-4">
+        <div className="flex flex-row justify-between bg-primary-900  mb-50 px-5 py-5 gap-4">
           <div className="text-3xl whitespace-nowrap">Next Todos</div>
-          <ul className="text-3xl  flex-row gap-5 justify-between hidden lg:flex whitespace-nowrap">
+          <ul className="[&>*:hover]:text-secondary-500 text-3xl  flex-row gap-5 justify-between hidden lg:flex whitespace-nowrap">
             <li>
-              <Link className="hover:text-blue-200" href="/">
-                Home Page
-              </Link>
+              <Link href="/">Home Page</Link>
             </li>
             <li>
-              <Link className="hover:text-blue-200" href="/todos">
-                All Todos
-              </Link>
+              <Link href="/todos">All Todos</Link>
             </li>
             <li>
-              <Link className="hover:text-blue-200" href="/new-todo">
-                New Todos
-              </Link>
+              <Link href="/new-todo">New Todos</Link>
             </li>
             {user && (
               <li>
-                <Link
-                  onClick={clickHandler}
-                  className="hover:text-blue-200"
-                  href="/"
-                >
+                <Link onClick={clickHandler} href="/">
                   Logout
                 </Link>
               </li>
@@ -64,14 +54,10 @@ const MainNavigation: React.FC = () => {
             {!user && (
               <>
                 <li>
-                  <Link className="hover:text-blue-200" href="/auth">
-                    Login
-                  </Link>
+                  <Link href="/auth">Login</Link>
                 </li>
                 <li>
-                  <Link className="hover:text-blue-200" href="/sign-up">
-                    Sign Up
-                  </Link>
+                  <Link href="/sign-up">Sign Up</Link>
                 </li>
               </>
             )}
@@ -92,32 +78,22 @@ const MainNavigation: React.FC = () => {
               ref={wrapperRef}
               onClick={clickHandler2}
               className={`lg:hidden flex flex-col gap-5 justify-between  p-3 text-1x1 
-              bg-opacity-90 bg-blue-800 w-1/4 float-right rounded-b  ${
-                showNav ? "animate-menu-down" : "animate-menu-up"
-              }`}
+               bg-primary-800 w-1/3 float-right rounded-b  ${
+                 showNav ? "animate-menu-down" : "animate-menu-up"
+               } [&>*:hover]:text-secondary-500 `}
             >
               <li>
-                <Link className="hover:text-blue-200" href="/">
-                  Home Page
-                </Link>
+                <Link href="/">Home Page</Link>
               </li>
               <li>
-                <Link className="hover:text-blue-200" href="/todos">
-                  All Todos
-                </Link>
+                <Link href="/todos">All Todos</Link>
               </li>
               <li>
-                <Link className="hover:text-blue-200" href="/new-todo">
-                  New Todos
-                </Link>
+                <Link href="/new-todo">New Todos</Link>
               </li>
               {user && (
                 <li>
-                  <Link
-                    onClick={clickHandler}
-                    className="hover:text-blue-200"
-                    href="/"
-                  >
+                  <Link onClick={clickHandler} href="/">
                     Logout
                   </Link>
                 </li>
@@ -125,14 +101,10 @@ const MainNavigation: React.FC = () => {
               {!user && (
                 <>
                   <li>
-                    <Link className="hover:text-blue-200" href="/auth">
-                      Login
-                    </Link>
+                    <Link href="/auth">Login</Link>
                   </li>
                   <li>
-                    <Link className="hover:text-blue-200" href="/sign-up">
-                      Sign Up
-                    </Link>
+                    <Link href="/sign-up">Sign Up</Link>
                   </li>
                 </>
               )}
