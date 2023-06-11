@@ -18,7 +18,9 @@ const MainNavigation: React.FC = () => {
   useEffect(() => {
     const handleClickOutside = (event: any) => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setShowNav(false);
+        setTimeout(() => {
+          setShowNav(false);
+        }, 100);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -75,19 +77,24 @@ const MainNavigation: React.FC = () => {
             )}
           </ul>
           <span
-            className="lg:hidden cursor-pointer text-3xl"
+            className={`lg:hidden cursor-pointer text-3xl  ${
+              showNav ? " animate-fade-in-down" : "animate-fade-in-up"
+            }`}
             onClick={clickHandler2}
           >
             {"\u2630"}
           </span>
         </div>
 
-        <div className="lg:hidden bg-opacity-90 bg-blue-800 w-1/4 float-right rounded-b ">
+        <div className="lg:hidden">
           {showNav && (
             <ul
               ref={wrapperRef}
               onClick={clickHandler2}
-              className="lg:hidden flex flex-col gap-5 justify-between w-80 p-3 text-1x1"
+              className={`lg:hidden flex flex-col gap-5 justify-between  p-3 text-1x1 
+              bg-opacity-90 bg-blue-800 w-1/4 float-right rounded-b  ${
+                showNav ? "animate-menu-down" : "animate-menu-up"
+              }`}
             >
               <li>
                 <Link className="hover:text-blue-200" href="/">
