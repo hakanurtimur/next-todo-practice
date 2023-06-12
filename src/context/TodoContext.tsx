@@ -73,6 +73,14 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
       console.error(error);
     }
   }
+  async function unCompleteTodo(todo: any) {
+    try {
+      const todoRef = doc(collectionRef, todo.id);
+      await updateDoc(todoRef, { isCompleted: false });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   async function deleteTodo(todo: any) {
     try {
@@ -96,6 +104,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
         addTodo,
         completeTodo,
         deleteTodo,
+        unCompleteTodo,
       }}
     >
       {children}

@@ -31,7 +31,7 @@ const NewTodo = () => {
       <h1 className="text-center text-primary-900 text-2xl">Add Todos</h1>
       <form
         onSubmit={submitHandler}
-        className="flex flex-col justify-between items-center text-blue-950 p-3 w-full m-auto"
+        className="flex flex-col justify-between items-center text-primary-900 p-3 w-full m-auto"
       >
         <label className="w-8/12 m-1" htmlFor="todo-text">
           Todos Text

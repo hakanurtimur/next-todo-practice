@@ -27,11 +27,11 @@ const TodoItem: React.FC<{
   return (
     <div className="flex flex-row items-center w-full">
       <div
-        className={`flex justify-center items-center rounded-full border-1 border-primary-900 w-7 h-7 bg-primary-100 
+        className={`flex justify-center flex-shrink-0 items-center rounded-full border-1 border-primary-900 w-7  h-7  bg-primary-100 
       hover:animate-bounce hover:bg-secondary-900`}
       >
         <button
-          className="text-primary-900 align-middle hover:text-primary-500 text-1xl flex-1"
+          className="w-full text-primary-900 hover:text-primary-500 text-1xl"
           onClick={completeHandler}
         >
           &#x2713;
@@ -41,32 +41,29 @@ const TodoItem: React.FC<{
         className={`flex flex-col justify-between w-full border-2 border-primary-100 text-blue-950 p-2 m-2 rounded`}
       >
         <div className="flex flex-row justify-between gap-1">
-          <p className="text-primary-900 text-1xl whitespace-normal break-words w-60 ">
+          <p className="text-primary-900  text-1xl whitespace-normal break-words w-20 xs:w-60">
             {props.title}
           </p>
 
           <div className="flex flex-row gap-2">
-            <div>
-              <button
-                className="text-fifth-900 hover:text-fifth-500"
-                onClick={deleteHandler}
-              >
-                &#x2715;
-              </button>
-            </div>
-            <div className="flex justify-center items-center">
-              <button
-                className="text-primary-900 hover:text-primary-500"
-                onClick={showDetailsHandler}
-              >
-                {!isShown ? "▲" : "▼"}
-              </button>
-            </div>
+            <button
+              className="text-fifth-900 hover:text-fifth-500"
+              onClick={deleteHandler}
+            >
+              &#x2715;
+            </button>
+
+            <button
+              className="text-primary-900 hover:text-primary-500"
+              onClick={showDetailsHandler}
+            >
+              {isShown ? "▲" : "▼"}
+            </button>
           </div>
         </div>
         {isShown && (
           <p
-            className={`text-primary-500 whitespace-normal break-words flex-grow-0 ${
+            className={`text-primary-500 w-20 xs:w-60 whitespace-normal break-words flex-grow-1 ${
               isShown && "animate-menu-down"
             }`}
           >

@@ -9,7 +9,7 @@ const Todos: React.FC<{ todos: Todo[] }> = (props) => {
   const { user } = useContext(AuthContext);
   return (
     <div className="mt-3 lg:flex lg:flex-row lg:items-start w-full justify-between items-center flex flex-col px-5">
-      <ul className="flex-1 flex flex-col  border-b-2 border-primary-50 pb-10  w-8/12 items-center h-full mb-10">
+      <ul className="flex-1 flex flex-col lg:mx-10  flex-shrink-0 border-b-2 border-primary-50 pb-10  w-8/12 items-center h-full mb-10">
         <h1 className="text-primary-900 text-2xl">Target Todos</h1>
 
         {props.todos.map((todo) => {
