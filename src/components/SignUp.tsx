@@ -12,13 +12,14 @@ const SignUp: React.FC = () => {
 
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    if (!emailRef.current || !passwordRef.current) return;
     const enteredEmail: string = emailRef.current?.value as string;
     if (enteredEmail && enteredEmail.trim().length === 0) {
       // throw an error
       return;
     }
-    const enteredPassword: string = passwordRef.current?.value as string;
+
+    const enteredPassword: string = passwordRef.current?.value;
     if (enteredPassword && enteredPassword.trim().length === 0) {
       return;
     }

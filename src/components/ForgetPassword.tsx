@@ -7,8 +7,8 @@ const ForgetPassword: React.FC = () => {
   const { forgetPassword } = useAuth() as AuthContextModel;
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const enteredEmail = enteredRef.current?.value as string;
+    if (!enteredRef.current) return;
+    const enteredEmail = enteredRef.current?.value;
     if (enteredEmail && enteredEmail.trim().length === 0) {
       // throw an error
       return;

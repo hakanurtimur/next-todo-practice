@@ -13,8 +13,8 @@ const Auth: React.FC = () => {
 
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const enteredEmail: string = emailRef.current?.value as string;
+    if (!emailRef.current || !passwordRef.current) return;
+    const enteredEmail: string = emailRef.current?.value;
     if (enteredEmail && enteredEmail.trim().length === 0) {
       // throw an error
       return;

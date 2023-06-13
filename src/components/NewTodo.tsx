@@ -11,7 +11,8 @@ const NewTodo = () => {
   const [disabled, setDisabled] = React.useState(false);
   const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-    const enteredText = textInputRef.current?.value as string;
+    if (!textInputRef.current || !descriptionInputRef.current) return;
+    const enteredText = textInputRef.current?.value;
     if (enteredText && enteredText.trim().length === 0) {
       // throw an error
       return;
