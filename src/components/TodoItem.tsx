@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { TodoContext } from "@/context/TodoContext";
+import TodoContextModel from "@/models/todoContextModel";
+import Todo from "@/models/todo";
 
 const TodoItem: React.FC<{
-  item: object;
+  item: Todo;
   title: string;
   id: string;
   isCompleted: boolean;
@@ -10,18 +12,20 @@ const TodoItem: React.FC<{
 }> = (props) => {
   const [isShown, setIsShown] = React.useState(false);
 
-  const { completeTodo, deleteTodo } = useContext(TodoContext);
+  const { completeTodo, deleteTodo } = useContext(
+    TodoContext
+  ) as TodoContextModel;
 
   const showDetailsHandler = () => {
     setIsShown((prevState) => !prevState);
   };
 
-  const completeHandler = () => {
-    completeTodo(props.item);
+  const completeHandler = async () => {
+    await completeTodo(props.item);
   };
 
-  const deleteHandler = () => {
-    deleteTodo(props.item);
+  const deleteHandler = async () => {
+    await deleteTodo(props.item);
   };
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {

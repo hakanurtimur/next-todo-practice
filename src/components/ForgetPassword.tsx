@@ -1,13 +1,14 @@
 import React from "react";
 import { useAuth } from "@/context/AuthContext";
+import AuthContextModel from "@/models/authContextModel";
 
 const ForgetPassword: React.FC = () => {
   const enteredRef = React.useRef<HTMLInputElement>(null);
-  const { forgetPassword } = useAuth();
+  const { forgetPassword } = useAuth() as AuthContextModel;
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const enteredEmail = enteredRef.current?.value;
+    const enteredEmail = enteredRef.current?.value as string;
     if (enteredEmail && enteredEmail.trim().length === 0) {
       // throw an error
       return;

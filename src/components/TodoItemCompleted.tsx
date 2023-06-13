@@ -1,24 +1,26 @@
 import React, { useContext } from "react";
 import { TodoContext } from "@/context/TodoContext";
+import TodoContextModel from "@/models/todoContextModel";
+import Todo from "@/models/todo";
 
 const TodoItemCompleted: React.FC<{
   title: string;
   id: string;
   isCompleted: boolean;
   description: string;
-  item: object;
+  item: Todo;
 }> = (props) => {
   const [isShown, setIsShown] = React.useState(false);
 
-  const { deleteTodo } = useContext(TodoContext);
-  const { unCompleteTodo } = useContext(TodoContext);
+  const { deleteTodo } = useContext(TodoContext) as TodoContextModel;
+  const { unCompleteTodo } = useContext(TodoContext) as TodoContextModel;
 
-  const deleteHandler = () => {
-    deleteTodo(props.item);
+  const deleteHandler = async () => {
+    await deleteTodo(props.item);
   };
 
-  const unCompleteHandler = () => {
-    unCompleteTodo(props.item);
+  const unCompleteHandler = async () => {
+    await unCompleteTodo(props.item);
   };
 
   const showDetailsHandler = () => {

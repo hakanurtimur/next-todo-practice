@@ -7,23 +7,25 @@ import {
   signOut,
 } from "@firebase/auth";
 import { auth } from "@/config/firebase";
+import User from "../models/user";
+import AuthContextModel from "@/models/authContextModel";
 
-export const AuthContext = createContext<any>(null);
+export const AuthContext = createContext<AuthContextModel | null>(null);
 
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user !== null) {
+      if (user !== null && user.uid !== null && user.email !== null) {
         setUser({
           uid: user.uid,
           email: user.email,
-          displayName: user.displayName,
         });
+        console.log(user);
       } else {
         setUser(null);
       }

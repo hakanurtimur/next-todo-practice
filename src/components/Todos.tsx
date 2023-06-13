@@ -4,26 +4,32 @@ import TodoItem from "@/components/TodoItem";
 import { AuthContext } from "@/context/AuthContext";
 import TodoItemCompleted from "@/components/TodoItemCompleted";
 import { TodoContext } from "@/context/TodoContext";
+import AuthContextModel from "@/models/authContextModel";
+import TodoContextModel from "@/models/todoContextModel";
 
 const Todos: React.FC<{ todos: Todo[] }> = (props) => {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext) as AuthContextModel;
 
-  const { dragForComplete, dragForUnComplete } = useContext(TodoContext);
+  const { dragForComplete, dragForUnComplete } = useContext(
+    TodoContext
+  ) as TodoContextModel;
 
   const handleDragOver = (event: React.DragEvent<HTMLUListElement>) => {
     event.preventDefault();
   };
-  const handleDropForComplete = (event: React.DragEvent<HTMLUListElement>) => {
-    event.preventDefault();
-    const id = event.dataTransfer.getData("text/plain");
-    dragForComplete(id);
-  };
-  const handleDropForUnComplete = (
+  const handleDropForComplete = async (
     event: React.DragEvent<HTMLUListElement>
   ) => {
     event.preventDefault();
     const id = event.dataTransfer.getData("text/plain");
-    dragForUnComplete(id);
+    await dragForComplete(id);
+  };
+  const handleDropForUnComplete = async (
+    event: React.DragEvent<HTMLUListElement>
+  ) => {
+    event.preventDefault();
+    const id = event.dataTransfer.getData("text/plain");
+    await dragForUnComplete(id);
   };
 
   return (
@@ -36,7 +42,7 @@ const Todos: React.FC<{ todos: Todo[] }> = (props) => {
         <h1 className="text-primary-900 text-2xl">Target Todos</h1>
 
         {props.todos.map((todo) => {
-          if (!todo.isCompleted && todo.owner === user.uid) {
+          if (!todo.isCompleted && user && todo.owner === user.uid) {
             return (
               <TodoItem
                 item={todo}
@@ -59,7 +65,7 @@ const Todos: React.FC<{ todos: Todo[] }> = (props) => {
         <h1 className="text-primary-900 text-2xl">Completed Todos </h1>
 
         {props.todos.map((todo) => {
-          if (todo.isCompleted && todo.owner === user.uid) {
+          if (todo.isCompleted && user && todo.owner === user.uid) {
             return (
               <TodoItemCompleted
                 item={todo}

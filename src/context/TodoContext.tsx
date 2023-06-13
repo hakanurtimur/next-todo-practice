@@ -1,28 +1,30 @@
-import React, { useEffect, createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 
 import db from "@/config/firebase";
 import {
   collection,
-  doc,
-  setDoc,
-  onSnapshot,
-  updateDoc,
   deleteDoc,
+  doc,
+  FirestoreError,
+  onSnapshot,
+  setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { AuthContext } from "@/context/AuthContext";
 import { uuidv4 } from "@firebase/util";
+import AuthContextModel from "@/models/authContextModel";
+import Todo from "@/models/todo";
+import TodoContextModel from "@/models/todoContextModel";
 
-export const TodoContext = createContext<any>({});
+export const TodoContext = createContext<TodoContextModel | null>(null);
 const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [todos, setTodos] = React.useState<any>([]); // [
+  const [todos, setTodos] = React.useState<Todo[]>([]); // [
   const collectionRef = collection(db, "todos");
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const [title, setTitle] = React.useState<any>([]);
-  const [description, setDescription] = React.useState<any>([]);
-  const [error, setError] = React.useState<any>(null);
-  const { user } = useContext(AuthContext);
+  const [error, setError] = React.useState<FirestoreError | null>(null);
+  const { user } = useContext(AuthContext) as AuthContextModel;
 
-  useEffect(() => {
+  -useEffect(() => {
     setIsLoading(true);
 
     const unsubscribe = onSnapshot(
@@ -33,7 +35,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
         querySnapshot.forEach((doc) => {
           items.push(doc.data());
         });
-        setTodos(items);
+        setTodos(items as Todo[]);
         setIsLoading(false);
       },
       (error) => {
@@ -65,7 +67,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
-  async function completeTodo(todo: any) {
+  async function completeTodo(todo: Todo) {
     try {
       const todoRef = doc(collectionRef, todo.id);
       await updateDoc(todoRef, { isCompleted: true });
@@ -73,7 +75,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
       console.error(error);
     }
   }
-  async function unCompleteTodo(todo: any) {
+  async function unCompleteTodo(todo: Todo) {
     try {
       const todoRef = doc(collectionRef, todo.id);
       await updateDoc(todoRef, { isCompleted: false });
@@ -82,7 +84,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
-  async function dragForComplete(id: any) {
+  async function dragForComplete(id: string) {
     try {
       const todoRef = doc(collectionRef, id);
       await updateDoc(todoRef, { isCompleted: true });
@@ -90,7 +92,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
       console.error(error);
     }
   }
-  async function dragForUnComplete(id: any) {
+  async function dragForUnComplete(id: string) {
     try {
       const todoRef = doc(collectionRef, id);
       await updateDoc(todoRef, { isCompleted: false });
@@ -99,7 +101,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
-  async function deleteTodo(todo: any) {
+  async function deleteTodo(todo: Todo) {
     try {
       const todoRef = doc(collectionRef, todo.id);
       await deleteDoc(todoRef);
@@ -114,10 +116,6 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
         todos,
         isLoading,
         error,
-        title,
-        setTitle,
-        description,
-        setDescription,
         addTodo,
         completeTodo,
         deleteTodo,

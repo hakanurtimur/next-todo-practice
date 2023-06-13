@@ -1,23 +1,24 @@
 import React from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/router";
+import AuthContextModel from "@/models/authContextModel";
 
 const SignUp: React.FC = () => {
   const router = useRouter();
   const emailRef = React.useRef<HTMLInputElement>(null);
   const passwordRef = React.useRef<HTMLInputElement>(null);
 
-  const { signUp } = useAuth();
+  const { signUp } = useAuth() as AuthContextModel;
 
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const enteredEmail = emailRef.current?.value;
+    const enteredEmail: string = emailRef.current?.value as string;
     if (enteredEmail && enteredEmail.trim().length === 0) {
       // throw an error
       return;
     }
-    const enteredPassword = passwordRef.current?.value;
+    const enteredPassword: string = passwordRef.current?.value as string;
     if (enteredPassword && enteredPassword.trim().length === 0) {
       return;
     }

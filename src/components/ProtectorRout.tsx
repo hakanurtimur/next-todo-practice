@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/router";
+import AuthContextModel from "@/models/authContextModel";
 
 const ProtectorRout = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useAuth();
+  const { user } = useAuth() as AuthContextModel;
   const router = useRouter();
 
   useEffect(() => {

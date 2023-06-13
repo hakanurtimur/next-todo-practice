@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
+import AuthContextModel from "@/models/authContextModel";
 
 const MainNavigation: React.FC = () => {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuth() as AuthContextModel;
   const clickHandler = async () => {
     await logout();
   };

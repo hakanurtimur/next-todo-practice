@@ -1,27 +1,28 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { TodoContext } from "@/context/TodoContext";
 import { useRouter } from "next/router";
+import TodoContextModel from "@/models/todoContextModel";
 
 const NewTodo = () => {
   const router = useRouter();
-  const { addTodo } = React.useContext(TodoContext);
+  const { addTodo } = useContext(TodoContext) as TodoContextModel;
   const textInputRef = useRef<HTMLInputElement>(null);
   const descriptionInputRef = useRef<HTMLInputElement>(null);
   const [disabled, setDisabled] = React.useState(false);
   const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-    const enteredText = textInputRef.current?.value;
+    const enteredText = textInputRef.current?.value as string;
     if (enteredText && enteredText.trim().length === 0) {
       // throw an error
       return;
     }
-    const enteredDescription = descriptionInputRef.current?.value;
+    const enteredDescription = descriptionInputRef.current?.value as string;
     if (enteredDescription && enteredDescription.trim().length === 0) {
       return;
     }
 
     setDisabled(true);
-    addTodo(enteredText, enteredDescription);
+    await addTodo(enteredText, enteredDescription);
     if (textInputRef.current) {
       textInputRef.current.value = "";
     }
