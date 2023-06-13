@@ -1,14 +1,11 @@
 import Todos from "@/components/Todos";
 import React from "react";
-import {TodoContext} from "@/context/TodoContext";
+import { TodoContext } from "@/context/TodoContext";
 
 const TodosPage = () => {
+  const { todos } = React.useContext(TodoContext);
 
-    const {todos} = React.useContext(TodoContext);
-
-
-    return <Todos todos={todos}/>
-}
-
+  return <Todos todos={todos} />;
+};
 
 export default TodosPage;

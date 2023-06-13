@@ -82,11 +82,10 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
-
   async function dragForComplete(id: any) {
     try {
       const todoRef = doc(collectionRef, id);
-      await updateDoc(todoRef, { isCompleted: true })
+      await updateDoc(todoRef, { isCompleted: true });
     } catch (error) {
       console.error(error);
     }
@@ -94,7 +93,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
   async function dragForUnComplete(id: any) {
     try {
       const todoRef = doc(collectionRef, id);
-      await updateDoc(todoRef, { isCompleted: false })
+      await updateDoc(todoRef, { isCompleted: false });
     } catch (error) {
       console.error(error);
     }

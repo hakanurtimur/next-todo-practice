@@ -7,8 +7,8 @@ const ForgetPassword: React.FC = () => {
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const enteredEmail = enteredRef.current!.value;
-    if (enteredEmail.trim().length === 0) {
+    const enteredEmail = enteredRef.current?.value;
+    if (enteredEmail && enteredEmail.trim().length === 0) {
       // throw an error
       return;
     }

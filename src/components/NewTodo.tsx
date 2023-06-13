@@ -8,23 +8,25 @@ const NewTodo = () => {
   const textInputRef = useRef<HTMLInputElement>(null);
   const descriptionInputRef = useRef<HTMLInputElement>(null);
   const [disabled, setDisabled] = React.useState(false);
-  const submitHandler = (event: React.FormEvent) => {
+  const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-    const enteredText = textInputRef.current!.value;
-    if (enteredText.trim().length === 0) {
+    const enteredText = textInputRef.current?.value;
+    if (enteredText && enteredText.trim().length === 0) {
       // throw an error
       return;
     }
-    const enteredDescription = descriptionInputRef.current!.value;
-    if (enteredDescription.trim().length === 0) {
+    const enteredDescription = descriptionInputRef.current?.value;
+    if (enteredDescription && enteredDescription.trim().length === 0) {
       return;
     }
 
     setDisabled(true);
     addTodo(enteredText, enteredDescription);
-    textInputRef.current!.value = "";
+    if (textInputRef.current) {
+      textInputRef.current.value = "";
+    }
     setDisabled(false);
-    router.push("/todos");
+    await router.push("/todos");
   };
   return (
     <div>

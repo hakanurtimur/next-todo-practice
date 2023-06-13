@@ -25,15 +25,17 @@ const TodoItemCompleted: React.FC<{
     setIsShown((prevState) => !prevState);
   };
 
-  const handleDragStart: any= (event: React.DragEvent<HTMLDivElement>) => {
-
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
     event.dataTransfer.setData("text/plain", props.id);
     console.log(event.dataTransfer.getData("text/plain"));
-
-  }
+  };
 
   return (
-    <div className="flex flex-row items-center w-full " onDragStart={handleDragStart} draggable={true}>
+    <div
+      className="flex flex-row items-center w-full "
+      onDragStart={handleDragStart}
+      draggable={true}
+    >
       <div
         className={`flex justify-center flex-shrink-0 items-center rounded-full border-1 border-primary-900 w-7  
         h-7  bg-primary-100 hover:animate-bounce hover:bg-fifth-900`}

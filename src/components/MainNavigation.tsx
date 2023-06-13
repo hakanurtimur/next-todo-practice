@@ -7,7 +7,7 @@ const MainNavigation: React.FC = () => {
   const clickHandler = async () => {
     await logout();
   };
-  const wrapperRef = React.useRef<any>(null);
+  const wrapperRef = React.useRef<HTMLUListElement>(null);
 
   const [showNav, setShowNav] = React.useState(false);
 
@@ -16,8 +16,11 @@ const MainNavigation: React.FC = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+    const handleClickOutside = (event: Event) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
         setTimeout(() => {
           setShowNav(false);
         }, 100);
