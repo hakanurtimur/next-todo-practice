@@ -1,38 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next Todo App
+<img width="1440" alt="." src="https://github.com/hakanurtimur/next-todo-practice/assets/111294587/c61be91a-da6e-4d0d-9913-5c8f715ae16c">
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+**Next Todo App** is a ToDo application that allows users to easily sign up, sign in, add, and manage tasks. This application is developed using Next.js, TypeScript, Firebase, and Tailwind CSS.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Users can sign up and sign in.
+- Users can add, edit, and delete tasks.
+- Tasks can be marked as completed.
+- Tasks can be viewed in both list and card views.
+- User authentication with Firebase Authentication.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Technologies Used
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+This project utilizes the following technologies:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Next.js](https://nextjs.org/): A React-based framework for building user interfaces.
+- [TypeScript](https://www.typescriptlang.org/): A type-safe superset of JavaScript.
+- [Firebase](https://firebase.google.com/): A cloud-based platform for real-time databases and authentication.
+- [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for fast and customizable styling.
 
-## Learn More
+  
+  <img width="737" alt="." src="https://github.com/hakanurtimur/next-todo-practice/assets/111294587/16814fdd-98c7-4839-b05e-8eff50ed47f4">
 
-To learn more about Next.js, take a look at the following resources:
+Usage
+The application allows users to sign up and sign in.
+Users can add, edit, and delete tasks.
+Tasks can be marked as completed.
+Tasks can be viewed in both list and card views.
+Items are draggable.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+test@test.com with password 123456 is usable.
